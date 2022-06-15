@@ -33,7 +33,7 @@ const Ecommerce = () => {
           </div>
         </div>
 
-        <div className='flex m-3 flex-wrap justify-center gap-1 items-center'>
+        <div className='flex m-3 flex-wrap justify-center gap-3 items-center '>
           {earningData.map((item) => (
             <div
               key={item.title}
@@ -66,8 +66,12 @@ const Ecommerce = () => {
         </div>
       </div>
 
-      <div>
-        
+      <div className='flex flex-wrap gap-10 justify-center'>
+          <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780'>
+            <div className='flex justify-between'>
+              <p className='font-semibold text-xl'>Revenue updates</p>
+            </div>
+          </div>
       </div>
 
     </div>
