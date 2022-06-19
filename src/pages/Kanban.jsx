@@ -12,7 +12,7 @@ const Kanban = () => {
       <KanbanComponent
         id="kanban"
         dataSource={kanbanData}
-        cardSettings={{ contentField: 'Summary', headerField: 'Id'}}
+        cardSettings={{ contentField: 'Summary', headerField: 'Id', showHeader: true }}
         keyField='Status'
       >
         <ColumnsDirective>
