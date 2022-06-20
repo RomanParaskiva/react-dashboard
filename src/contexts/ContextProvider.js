@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 
 const StateContext = createContext()
 
@@ -13,17 +13,17 @@ export const ContextProvider = ({ children }) => {
     const [activeMenu, setActiveMenu] = useState(true)
     const [isClicked, setIsClicked] = useState(initialState)
     const [screenSize, setScreenSize] = useState(undefined)
-    const [currentColor, setCurrentColor] = useState('#03C9D7')
-    const [currentMode, setCurrentMode] = useState('Light')
+    const [currentColor, setCurrentColor] = useState(localStorage.getItem('colorMode') ? localStorage.getItem('colorMode') : '#03C9D7')
+    const [currentMode, setCurrentMode] = useState(localStorage.getItem('themeMode') ? localStorage.getItem('themeMode') : 'Light')
     const [themeSettings, setThemeSettings] = useState(false)
 
-    const setMode = ({target}) => {
+    const setMode = ({ target }) => {
         setCurrentMode(target.value)
         localStorage.setItem('themeMode', target.value)
         setThemeSettings(false)
     }
 
-    
+
     const setColor = (color) => {
         setCurrentColor(color)
         localStorage.setItem('colorMode', color)
@@ -32,23 +32,28 @@ export const ContextProvider = ({ children }) => {
 
 
     const handleClick = (clicked) => {
-        setIsClicked({ ...initialState, [clicked]: true })
+            setIsClicked({ ...initialState, [clicked]: true })
+    }
+
+    const resetIsClicked = () => {
+        setIsClicked({...initialState})
     }
 
     return (
         <StateContext.Provider
-            value={{ 
-                activeMenu, 
-                setActiveMenu, 
-                isClicked, 
-                setIsClicked, 
+            value={{
+                activeMenu,
+                setActiveMenu,
+                isClicked,
+                setIsClicked,
+                resetIsClicked,
                 handleClick,
-                screenSize, 
+                screenSize,
                 setScreenSize,
                 setMode, setColor,
                 currentColor, currentMode,
                 themeSettings, setThemeSettings
-             }}
+            }}
         >
             {children}
         </StateContext.Provider>

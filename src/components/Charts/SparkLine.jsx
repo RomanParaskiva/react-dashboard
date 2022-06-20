@@ -1,7 +1,9 @@
 import React from 'react'
 import { SparklineComponent, Inject, SparklineTooltip } from '@syncfusion/ej2-react-charts'
+import { useStateContext } from '../../contexts/ContextProvider'
 
 const SparkLine = ({ id, height, width, color, data, type, currentColor}) => {
+  const { currentMode } = useStateContext()
 
   return (
     <SparklineComponent
@@ -23,6 +25,7 @@ const SparkLine = ({ id, height, width, color, data, type, currentColor}) => {
           visible: true
         }
       }}
+      className={currentMode === 'Dark' ? 'bg-secondary-dark-bg' : 'bg-white'}
     >
       <Inject services={[SparklineTooltip]}/>
     </SparklineComponent>

@@ -3,9 +3,11 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Leg
 
 import { stackedCustomSeries, stackedPrimaryXAxis, stackedPrimaryYAxis } from '../../data/dummy'
 
+import { useStateContext } from '../../contexts/ContextProvider'
+
 
 const Stacked = ({ width, height }) => {
-
+  const { currentMode } = useStateContext()
   return (
     <ChartComponent
       width={width}

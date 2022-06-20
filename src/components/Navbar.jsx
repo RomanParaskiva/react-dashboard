@@ -24,7 +24,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) =>
 </TooltipComponent>)
 
 const Navbar = () => {
-  const { setActiveMenu, isClicked, handleClick, screenSize, setScreenSize, currentColor } = useStateContext()
+  const { setActiveMenu, isClicked, handleClick, resetIsClicked, screenSize, setScreenSize, currentColor } = useStateContext()
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth) 
@@ -44,7 +44,7 @@ const Navbar = () => {
     }
   }, [screenSize])
   return (
-    <div className='flex justify-between p-2 md:mx-6 relative'>
+    <div className='flex justify-between p-2 md:mx-6 relative navbar'>
       <NavButton
         title="Menu"
         customFunc={() =>
@@ -58,6 +58,7 @@ const Navbar = () => {
         <NavButton
           title="Cart"
           customFunc={() => handleClick('cart')}
+          reset={() => resetIsClicked()}
           color={currentColor}
           icon={<FiShoppingCart />}
         />
